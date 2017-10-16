@@ -1,0 +1,13 @@
+<!--pages/layout/layout.wxml-->
+   <view>提示：{{tip}}</view>
+<view class='rootview'>
+    <view  class='showArea'>
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p1.png' class='pai2' data-id='p1' bindtap='click2'  style='height:250px;width:178px;' mode='aspectFill'></image>
+      <br/>
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p2.png'  class='pai3'  style='height:250px;width:178px;' mode='aspectFill'></image>
+      <br/>
+</view> 
+
+<modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消"
+  bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">{{message1}}</modal>
+</view>

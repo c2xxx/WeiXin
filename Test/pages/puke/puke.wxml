@@ -1,0 +1,13 @@
+<!--pages/puke/puke.wxml-->
+<view class='container'>
+  <view  class='showArea'>
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p1.png' class='pai2'  style='height:250px;width:178px;' mode='aspectFill'></image>
+      <br/>
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p2.png'  class='pai3'  style='height:250px;width:178px;' mode='aspectFill'></image>
+      <br/>
+</view> 
+  <!-- <view>
+  <modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消"
+  bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">您好，我是modal对话框</modal>
+</view> -->
+  </view>

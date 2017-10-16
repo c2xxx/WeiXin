@@ -1,0 +1,23 @@
+/* pages/kuke/kuke.wxss */
+
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 100px; 
+  color: #FF0000;
+  align-items: center;
+}
+
+.anniu {
+  margin-top: 130px; 
+  color: #FF0000;
+  align-items: center;
+}
+
+.icon_a{
+  margin-top: 10px;
+  margin-left: 10px;
+}

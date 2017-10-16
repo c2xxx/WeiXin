@@ -1,0 +1,21 @@
+<!--pages/kuke/kuke.wxml-->
+<view class='container'>
+  <view class="group">
+    <block wx:for="{{iconSize}}">
+      <icon type="success" class='icon_a' size="{{item}}" />
+    </block>
+  </view>
+  <view class="group">
+    <block wx:for="{{typeList}}">
+      <icon type="{{item}}" class='icon_a' size="25" />
+    </block>
+  </view>
+  <view class="group">
+    <block wx:for="{{iconColor}}">
+      <icon color="{{item}}" type="success" class='icon_a' size="30" />
+    </block>
+  </view>
+  <image src='{{src2}}' style='height:200px;width:200px;' mode='aspectFill'></image>
+  <text class='usermotto'>唉呀我也不知道内容怎写</text>
+  <button class='anniu' bindtap='clickBtn'>{{btnText}}</button>
+</view>
