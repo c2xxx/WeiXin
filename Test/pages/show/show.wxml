@@ -1,0 +1,11 @@
+<!--pages/show/show.wxml-->
+
+<view class='showArea'>
+  <text>牌局</text>
+  <view>
+    <block wx:for="{{allPai}}" wx:key='c'>
+      <image src='{{item.src}}' class='puke' bindtap='clickPuKe' animation="{{item.animation}}" data-id='{{item.id}}' style='height:{{item.height}};width:{{item.width}};margin-left: {{item.marginLeft}}rpx;margin-top:200rpx;' mode='aspectFill'></image>
+    </block>
+  </view>
+</view>
+<modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">{{message1}}</modal>

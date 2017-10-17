@@ -1,5 +1,5 @@
-/* pages/layout/layout.wxss */
-.rootview{
+/* pages/show/show.wxss */
+/* .rootview{
   background: gray;
   width: 100%;
   height: 100%;
@@ -9,18 +9,13 @@
   background-color: gray; 
   background: gray;
   width: 100%;
-}
-
-.pai{
-  margin-top: 100px;
+} */
+ 
+.puke {
   position:absolute; 
-  width: 100%;
 }
 
-.pai2{ 
-  margin-left: 0px; 
-}
 
-.pai3{ 
+.puke2{ 
   margin-left: 20px; 
 }

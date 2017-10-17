@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/show/show",
     "pages/layout/layout",
     "pages/puke/puke",
     "pages/index/index",

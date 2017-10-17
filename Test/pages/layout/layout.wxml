@@ -1,11 +1,13 @@
 <!--pages/layout/layout.wxml-->
    <view>提示：{{tip}}</view>
-<view class='rootview'>
-    <view  class='showArea'>
-<image src='http://oxwr9u8nc.bkt.clouddn.com/p1.png' class='pai2' data-id='p1' bindtap='click2'  style='height:250px;width:178px;' mode='aspectFill'></image>
-      <br/>
-<image src='http://oxwr9u8nc.bkt.clouddn.com/p2.png'  class='pai3'  style='height:250px;width:178px;' mode='aspectFill'></image>
-      <br/>
+<view  >
+    <view  >
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p1.png' class='pai' data-id='p1' bindtap='click2'  style='height:125px;width:90px;' mode='aspectFill'></image>
+      
+<image src='http://oxwr9u8nc.bkt.clouddn.com/p2.png'   animation="{{animation}}"  class='pai pai3'  data-id='p2' bindtap='click2'    style='height:125px;width:90px;' mode='aspectFill'></image>
+       
+  
+      <button type="primary" bindtap="rotate">动画</button>
 </view> 
 
 <modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消"
