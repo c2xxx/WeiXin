@@ -1,0 +1,41 @@
+<!--pages/canju/practice.wxml-->
+<view class='showArea'>
+  <view>
+    <block wx:for="{{dizhu}}" wx:key='c'>
+      <image src='{{item.src}}' class='puke puke_dizhu' bindtap='clickPuKe' animation="{{item.animation}}" data-id='{{item.id}}' data-group_name='dizhu' style='height:{{item.height}};width:{{item.width}};margin-left: {{item.marginLeft}}rpx;' mode='aspectFill'></image>
+    </block>
+    <block wx:for="{{famer}}" wx:key='c'>
+      <image src='{{item.src}}' data-group_name='famer' class='puke puke_famer' bindtap='clickPuKe' animation="{{item.animation}}" data-id='{{item.id}}' style='height:{{item.height}};width:{{item.width}};margin-left: {{item.marginLeft}}rpx;' mode='aspectFill'></image>
+    </block>
+
+    <block wx:for="{{dizhu_played}}" wx:key='c'>
+      <image src='{{item.src}}' data-group_name='famer' class='puke puke_dizhu_played' style='height:{{item.height}};width:{{item.width}};margin-left: {{item.marginLeft}}rpx;' mode='aspectFill'></image>
+    </block>
+
+    <block wx:for="{{famer_played}}" wx:key='c'>
+      <image src='{{item.src}}' data-group_name='famer' class='puke puke_famer_played' style='height:{{item.height}};width:{{item.width}};margin-left: {{item.marginLeft}}rpx;' mode='aspectFill'></image>
+    </block>
+  </view>
+  <text class='txt_dizhu'>地主</text>
+  <text class='txt_message'>{{notice}}</text>
+  <text class='txt_famer'>农民</text>
+
+  <icon type="info" class='icon_a' size="25" bindtap='gotoHelp'  style='position:absolute;left:680rpx;' />
+  <!-- <button class='button' type="primary" disabled="" bindtap='doTest'>Test</button> -->
+
+
+  <view class='border_dizhu'>
+    <view class='border' style='visibility:{{visible_dizhu_play}}'>
+      <button class='button' type="primary" disabled="{{enable_dizhu_play}}" bindtap='doPlay' data-player='dizhu'>出牌</button>
+      <button class='button' type="primary" disabled="{{enable_dizhu_pass}}" bindtap='doPass' data-player='dizhu'>不要</button>
+    </view>
+  </view>
+  <view class='border_famer'>
+    <view class='border' style='visibility:{{visible_famer_play}}'>
+      <button class='button' type="primary" disabled="{{enable_famer_play}}" bindtap='doPlay' data-player='famer'>出牌</button>
+      <button class='button' type="primary" disabled="{{enable_famer_pass}}" bindtap='doPass' data-player='famer'>不要</button>
+    </view>
+  </view>
+  <button class='button_reset' style='visibility:{{visible_reset}}' type="primary" bindtap='doReSet'>重新开局</button>
+</view>
+<modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">{{message1}}</modal>

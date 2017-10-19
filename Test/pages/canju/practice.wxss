@@ -1,0 +1,70 @@
+/* pages/canju/practice.wxss */
+
+.txt_dizhu {
+  position: absolute;
+  left: 20rpx;
+}
+
+.txt_famer {
+  position: absolute;
+  left: 20rpx;
+  top: 720rpx;
+}
+
+.txt_message {
+  position: absolute;
+  left: 20rpx;
+  top: 520rpx;
+  font-size: 12px;
+  color: rebeccapurple;
+  visibility: visible;
+}
+
+.border {
+  width: 50%;
+  text-align: center;
+  display: inline-flex;
+}
+
+.puke_dizhu {
+  margin-top: 105rpx;
+}
+.puke_dizhu_played {
+  margin-top: 400rpx;
+}
+
+.puke_famer {
+  margin-top: 850rpx;
+}
+.puke_famer_played {
+  margin-top: 550rpx;
+}
+
+.border_famer {
+  position: absolute;
+  top: 700rpx;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+}
+
+.border_dizhu {
+  position: absolute;
+  top: 370rpx;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+}
+
+.button {
+  width: 150rpx;
+  align-self: center;
+  font-size: 15px;
+}
+
+.button_reset {
+  width: 250rpx;
+  align-self: center;
+  font-size: 15px;
+  top: 500rpx;
+}

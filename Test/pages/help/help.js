@@ -1,39 +1,34 @@
-// pages/kuke/kuke.js
+// pages/help.js
+
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    iconSize: [10, 20, 30],
-    typeList: ['success', 'success_no_circle', 'info', 'warn',   'waiting', 'cancel', 'download', 'search', 'clear'],
-    btnText: '按钮',
-    iconColor: [
-      'red', 'orange', 'yellow', '#FF0000', 'green', 'rgb(0,255,255)', 'blue', 'purple'
-    ], 
-    src: '../../resources/cat.jpg',
-    src2: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1683657992,1868502675&fm=58&u_exp_0=1116624377,1535197265&fm_exp_0=86&bpow=1024&bpoh=768',
-    title: '标题'
+    describe:'斗地主双方明牌，规则是可以炸，可以三带一，可以四带二，但不能三带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？',
+    helpImg: app.getImgUrl('game_05.jpg')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // other.js
-    var appInstance = getApp()
-    console.log(appInstance.globalData) // I am global data
-  },
-
-  clickBtn: function () {
-    this.setData({ btnText: '哈哈哈' });
+    // 页面初始化 options为页面跳转所带来的参数 
+    var helpImg = options.imgUrl;
+    console.log('helpImg=' + helpImg);
+    if (helpImg != null) {
+      this.setData({
+        helpImg: helpImg
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

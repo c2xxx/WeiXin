@@ -8,4 +8,5 @@
     </block>
   </view>
 </view>
+<button>出牌</button>
 <modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">{{message1}}</modal>

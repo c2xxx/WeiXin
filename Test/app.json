@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/canju/practice",
+    "pages/help/help",
+    "pages/kuke/kuke",
+    "pages/index/index",
+    "pages/puke/puke",
     "pages/show/show",
     "pages/layout/layout",
-    "pages/puke/puke",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/kuke/kuke"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

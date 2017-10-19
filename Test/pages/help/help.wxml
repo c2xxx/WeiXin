@@ -1,0 +1,9 @@
+<!--pages/help.wxml-->
+<view class='border'>
+  <text class='txt1'>残局斗地主规则：</text>
+  <text class='txt2'>{{describe}}</text>
+  <view class='img_border'>
+     <image src='{{helpImg}}' class='mainImage'></image> 
+    <text  class='txt3'>ABCD</text>
+  </view>
+</view>

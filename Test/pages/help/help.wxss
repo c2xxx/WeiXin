@@ -1,0 +1,38 @@
+/* pages/help.wxss */
+
+.mainImage {
+  left: 10rpx;
+  width: 700rpx;
+  margin: 0px auto;
+  height: 900rpx;
+  display: block;
+  border: 1px solid gray;
+  margin-top: 10px;
+  /* visibility: hidden; */
+}
+
+.border {
+  text-align: left;
+}
+
+.txt1 {
+  color: black;
+}
+
+.txt2 {
+  color: black;
+}
+
+.txt3 {
+  background-color: red;
+  margin-left: 50%;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  visibility: hidden;
+}
+
+.img_border {
+  color: black;
+  /* background-color: green; */
+}

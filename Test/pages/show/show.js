@@ -53,8 +53,8 @@ function PuKe(name) {
   this.width = '180rpx';
   this.height = '250rpx';
   this.marginLeft = this.value * 40 - 30;
-  this.marginTop = _marginTop;
-} 
+  this.marginTop = 0;
+}
 
 Page({
 
@@ -109,18 +109,17 @@ Page({
     console.log("点击了:" + pai.name + ' index=' + index);
 
     var marginTop = pai.marginTop;
-    console.log(marginTop);
-    if (marginTop == _marginTop) {
-      pai.marginTop = 0;
-    } else {
+    if (marginTop == 0) {
       pai.marginTop = _marginTop;
+    } else {
+      pai.marginTop = 0;
     }
 
-    this.animationX.translateY(marginTop).step()
-    var param = {}; 
-    var key = 'allPai[' + index + '].animation';   
+    this.animationX.translateY(pai.marginTop).step()
+    var param = {};
+    var key = 'allPai[' + index + '].animation';
     param[key] = this.animationX.export();
-    this.setData(param);  
+    this.setData(param);
   },
   /**
    * 生命周期函数--监听页面加载
