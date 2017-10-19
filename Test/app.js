@@ -1,5 +1,4 @@
-//app.js
-var _id = 0;
+//app.js 
 App({
 
   /*
@@ -8,55 +7,10 @@ A（1）、2、3、4、5、6、7、8、9、10、J（11）、Q（12）、K（13�
 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10',
       'pJ', 'pQ', 'pK', 'wangxiao', 'wangda'
 */
-  PuKe: function (name) {
-    this.id = _id++;
-    this.name = name;
-    getApp().puKeInitHelper(this);
-    this.width = '180rpx';
-    this.height = '250rpx';
-    this.marginTop = 0;
-  },
   getImgUrl: function (imgName) {
     return 'http://oxwr9u8nc.bkt.clouddn.com/' + imgName;
   },
-  puKeInitHelper: function (puke) {
-    var value = puke.name;
-    var src = 'p' + puke.name;
-    switch (puke.name) {
-      case 'J':
-        value = 11;
-        src = 'p11';
-        break
-      case 'Q':
-        value = 12;
-        src = 'p12';
-        break
-      case 'K':
-        value = 13;
-        src = 'p13';
-        break
-      case 'A':
-        value = 14;
-        src = 'p1';
-        break
-      case '2':
-        value = 16;
-        break
-      case '小王':
-      case 'SubKing':
-        value = 20;
-        src = 'wang_xiao';
-        break
-      case '大王':
-      case 'King':
-        value = 21;
-        src = 'wang_da';
-        break
-    }
-    puke.value = value;
-    puke.src = 'http://oxwr9u8nc.bkt.clouddn.com/puke_' + src + '.png';
-    puke.animation = '';
-  },
+  
   modifyPosition: function (list, isJiangXu) {
     var count = list.length;
     var firstLeft = 0;

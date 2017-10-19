@@ -92,7 +92,7 @@ Page({
     var canPass = lastPlay.notPass;
     // console.log('canPass' + canPass); 
     var lastList = lastPlay.pukeList;
-    console.log(lastList);
+    // console.log(lastList);
     if (!lastList) {
       lastList = [];
     }
@@ -172,28 +172,34 @@ Page({
   },
   doReSet: function () {
     var listDizhu = [
-      new app.PuKe('大王'),
-      new app.PuKe('小王'),
-      new app.PuKe('J'),
-      new app.PuKe('J'),
-      new app.PuKe('9'),
-      new app.PuKe('9'),
-      new app.PuKe('9')];
+      new util.PuKe('大王'),
+      new util.PuKe('小王'),
+      new util.PuKe('10'),
+      new util.PuKe('10'),
+      new util.PuKe('J'),
+      new util.PuKe('J'),
+      new util.PuKe('9'),
+      new util.PuKe('9'),
+      new util.PuKe('9')];
     var listFamer = [
-      new app.PuKe('3'),
-      new app.PuKe('3'),
-      new app.PuKe('3'),
-      new app.PuKe('3'),
-      new app.PuKe('4'),
-      new app.PuKe('5'),
-      new app.PuKe('6'),
-      new app.PuKe('7'),
-      new app.PuKe('10'),
-      new app.PuKe('10'),
-      new app.PuKe('A'),
-      new app.PuKe('A'),
-      new app.PuKe('A'),
-      new app.PuKe('A')
+      new util.PuKe('3'),
+      new util.PuKe('3'),
+      new util.PuKe('3'),
+      new util.PuKe('3'),
+      new util.PuKe('4'),
+      new util.PuKe('4'),
+      new util.PuKe('4'),
+      new util.PuKe('5'),
+      new util.PuKe('5'),
+      new util.PuKe('5'),
+      new util.PuKe('6'),
+      new util.PuKe('7'),
+      new util.PuKe('10'),
+      new util.PuKe('10'),
+      new util.PuKe('A'),
+      new util.PuKe('A'),
+      new util.PuKe('A'),
+      new util.PuKe('A')
     ];
     listDizhu = this.resetListSelected(listDizhu);
     listFamer = this.resetListSelected(listFamer);
@@ -245,8 +251,12 @@ Page({
       list = this.data.dizhu;
     }
 
-    // console.log(util.isOk());
     var listSelected = this.getSelectedPuke(list);
+
+    var playType = util.getPlayType(listSelected);
+    console.log("这些牌是否可以出：");
+    console.log(playType);
+
     var listUnSelected = this.getUnSelectedPuke(list);
     var isWiner = this.listIsEmpty(listUnSelected);
     listUnSelected = this.resetListSelected(listUnSelected);
