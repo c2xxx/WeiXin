@@ -193,6 +193,32 @@ function is4And2(list, playType) {
 //4顺子：单牌连续，1 * n，n最小5，不含2和大小王 = n
 function isShunZi(list, playType) {
   var length = list.length;
+  var match = false;
+  if (length >= 5) {
+    var pre;
+    match = true;
+    for (var i = 0; i < length; i++) {
+      var value = list[i].value;
+      if (i == 0) {
+        pre = value;
+        continue;
+      }
+      // value - pre == 1;要满足
+      if (value - pre != 1) {
+        match = false;
+        break;
+      }
+      pre = value;
+    }
+  }
+
+  if (match) {
+    playType.type = 4;
+    playType.msg = '顺子x' + length;
+    playType.length = length;
+    playType.start = list[0].value;
+  }
+  return match;
 }
 //5连对: （2张一样的，连续）*n=2n，n最小1，即包括对子
 function isLianDui(list, playType) {
@@ -243,10 +269,12 @@ function isFlyAnd1(list, playType) {
   var match = false;
   if (length % 4 == 0) {
     list = listSelect(list, 3);
-    match = isFlyAnd0(list, playType);
-    playType.type = 6;
-    playType.msg = '飞机三带一';
-    return match;
+    var length2 = list.length;
+    if (length / 4 == length - length2) {//没有被筛选掉的牌数量校验
+      match = isFlyAnd0(list, playType);
+      playType.type = 6;
+      playType.msg = playType.length == 1 ? '三带一' : '飞机三带一';
+    }
   }
   return match;
 }
@@ -254,42 +282,42 @@ function isFlyAnd1(list, playType) {
 function isFlyAnd0(list, playType) {
   var length = list.length;
   var match = false;
-  if (length % 3 == 0) {
+  if (length > 0 && length % 3 == 0) {
     list = listSelect(list, 3);
-
-    var pre;
-    match = true;
-    for (var i = 0; i < length; i++) {
-      var value = list[i].value;
-      if (i == 0) {
-        pre = value;
-        continue;
-      }
-
-      if (i % 3 == 0) {
-        // value - pre == 1;要满足
-        if (value - pre != 1) {
-          match = false;
-          break;
+    if (length == list.length) {//没有被筛选掉牌
+      var pre;
+      match = true;
+      for (var i = 0; i < length; i++) {
+        var value = list[i].value;
+        if (i == 0) {
+          pre = value;
+          continue;
         }
-      } else if (i % 3 != 0) {
-        // value - pre == 0;要满足
-        if (value - pre != 0) {
-          match = false;
-          break;
+
+        if (i % 3 == 0) {
+          // value - pre == 1;要满足
+          if (value - pre != 1) {
+            match = false;
+            break;
+          }
+        } else if (i % 3 != 0) {
+          // value - pre == 0;要满足
+          if (value - pre != 0) {
+            match = false;
+            break;
+          }
+        }
+
+        if (i % 3 == 0) {
+          pre = value;
         }
       }
-
-      if (i % 3 == 0) {
-        pre = value;
-      }
-
     }
   }
   if (match) {
     playType.type = 7;
-    playType.msg = '飞机不带';
     playType.length = list.length / 3;
+    playType.msg = playType.length == 1 ? '三个不带' : '飞机不带';
     playType.start = list[0].value;
   }
   return match;
@@ -341,9 +369,47 @@ function listSelect(list, n) {
 function log(msg) {
   console.log('doudizhu_' + msg);
 }
+// 比较两组牌型的大小，判断是否可以出
+function compare(playType, lastPlayType) {
+
+  console.log('比较以下两组');
+  console.log(playType);
+  console.log(lastPlayType);
+  // 0过牌，没有出牌
+  // -1非法的类型，出牌不符合规则
+  // 1炸弹：王炸 / 4张一样的= 2或4
+  // 其他牌型
+
+  //本身就不对
+  if (playType == null || playType.type == -1) {
+    return false;
+  }
+  //过牌
+  if (playType.type == 0) {
+    return true;
+  }
+  //上一组牌是过、
+  if (lastPlayType == null
+    || lastPlayType.type == -1
+    || lastPlayType.type == 0) {
+    return true;
+  }
+  //牌型一样比大小
+  if (playType.type == lastPlayType.type) {
+    var bigger = ((playType.start - 0) - (lastPlayType.start - 0));
+    console.log(bigger);
+    return (playType.length == lastPlayType.length)
+      && bigger > 0;
+  }
+  //牌型不一样只能是炸弹,另个一不是炸弹
+  if (playType.type == 1) {
+    return true;
+  }
+}
 
 
 module.exports = {
+  compare: compare,
   getPlayType: getPlayType,
   PuKe: PuKe
 }

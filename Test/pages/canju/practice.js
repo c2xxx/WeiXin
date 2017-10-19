@@ -8,6 +8,7 @@ var PlayModel = function (player, pukuList) {
   this.pukeList = pukuList;//出牌列表
   this.isPass = !pukuList || pukuList == null || '';
   this.notPass = !this.isPass;
+  this.playType = util.getPlayType(pukuList);
 }
 
 Page({
@@ -15,7 +16,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    temp: '',
     hasFinish: false,//是否结束了
     notice: '',
     visible_famer_play: '',
@@ -57,7 +57,7 @@ Page({
       list = this.data.famer;
     }
     var pai = app.getPuKeInListById(list, id);
-    var index = app.getIndexInListById(list, id); 
+    var index = app.getIndexInListById(list, id);
 
     var marginTop = pai.marginTop;
     if (marginTop == 0) {
@@ -70,8 +70,8 @@ Page({
     animation.translateY(pai.marginTop).step()
     var param = {};
     var keyAnim = groupName + '[' + index + '].animation';
-    var valueAnim = animation.export(); 
-    param[keyAnim] = valueAnim; 
+    var valueAnim = animation.export();
+    param[keyAnim] = valueAnim;
     this.setData(param);
     this.refreshButton();
   },
@@ -174,8 +174,6 @@ Page({
     var listDizhu = [
       new util.PuKe('大王'),
       new util.PuKe('小王'),
-      new util.PuKe('10'),
-      new util.PuKe('10'),
       new util.PuKe('J'),
       new util.PuKe('J'),
       new util.PuKe('9'),
@@ -256,6 +254,22 @@ Page({
     var playType = util.getPlayType(listSelected);
     console.log("这些牌是否可以出：");
     console.log(playType);
+    //牌型不符合规则
+    if (!playType || playType.type == -1) {
+      this.setData({
+        notice: playType.msg
+      });
+      return;
+    }
+
+    var isBigger = util.compare(playType, this.data.lastPlay.playType);
+    //并没有大过原来的
+    if (!isBigger) {
+      this.setData({
+        notice: '呵呵，您的牌不够大！'
+      });
+      return;
+    }
 
     var listUnSelected = this.getUnSelectedPuke(list);
     var isWiner = this.listIsEmpty(listUnSelected);
@@ -265,7 +279,7 @@ Page({
     this.setData(form);
     this.setData({
       hasFinish: isWiner,
-      notice: isWiner ? '游戏结束 '  + (player == 'famer' ? '农民' : '地主') + '赢了' : this.data.notice,
+      notice: isWiner ? '游戏结束 ' + (player == 'famer' ? '农民' : '地主') + '赢了' : this.data.notice,
       lastPlay: new PlayModel(player, listSelected)
     });
     this.modifyPosition();
