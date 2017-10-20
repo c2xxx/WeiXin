@@ -1,7 +1,7 @@
-// pages/canju/practice.js
+// pages/practce/practice.js
 
-var isDebug = false;
 var util = require('../../utils/doudizhu.js');
+var paiju = require('../../utils/paiju.js');
 var app = getApp();//获取应用实例
 var PlayModel = function (player, pukuList) {
   this.player = player;//famer或dizhu
@@ -22,7 +22,7 @@ Page({
     enable_famer_play: "",
     enable_famer_pass: "",
     visible_dizhu_play: '',
-    visible_reset: isDebug ? '' : 'hidden',
+    visible_reset: 'hidden',
     enable_dizhu_play: "",
     enable_dizhu_pass: "",
     lastPlay: new PlayModel('dizhu', null),
@@ -30,7 +30,8 @@ Page({
     famer_played: [],
     dizhu_played: [],
     dizhu: [],
-    famer: []
+    famer: [],
+    game: null//这一局游戏的基础数据
   },
   resetListSelected: function (list) {
     var animation = app.globalData.animBack;
@@ -79,6 +80,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数 
+    var id = options.id;
+    console.log('id=' + id);
+
+    var game;
+    if (id) {
+      game = paiju.loadGameById(id);
+    } else {
+      game = paiju.randomGame();
+    }
+    if (game == null) {
+      this.setData({
+        notice: '糟糕，游戏加载失败！'
+      });
+      console.log('糟糕，游戏加载失败！');
+    } else {
+      this.setData({
+        game: game
+      });
+    }
 
   },
   refreshButton: function () {
@@ -90,9 +111,7 @@ Page({
       nextPlayer = '';
     }
     var canPass = lastPlay.notPass;
-    // console.log('canPass' + canPass); 
     var lastList = lastPlay.pukeList;
-    // console.log(lastList);
     if (!lastList) {
       lastList = [];
     }
@@ -138,7 +157,11 @@ Page({
     }
   },
   gotoHelp(e) {
-    var url = "../help/help?imgUrl=" + app.getImgUrl('game_05.jpg');
+    var img = app.getImgUrl('game_05.jpg');
+    if (this.data.game.image) {
+      img = this.data.game.image;
+    }
+    var url = "../help/help?imgUrl=" + img;
     wx.navigateTo({
       url: url,
     })
@@ -171,30 +194,18 @@ Page({
     return listSelected;
   },
   doReSet: function () {
-    var listDizhu = [
-      new util.PuKe('大王'),
-      new util.PuKe('小王'),
-      new util.PuKe('J'),
-      new util.PuKe('J'),
-      new util.PuKe('9'),
-      new util.PuKe('9'),
-      new util.PuKe('9')];
-    var listFamer = [
-      new util.PuKe('3'),
-      new util.PuKe('3'),
-      new util.PuKe('3'),
-      new util.PuKe('3'),
-      new util.PuKe('4'),
-      new util.PuKe('5'),
-      new util.PuKe('6'),
-      new util.PuKe('7'),
-      new util.PuKe('10'),
-      new util.PuKe('10'),
-      new util.PuKe('A'),
-      new util.PuKe('A'),
-      new util.PuKe('A'),
-      new util.PuKe('A')
-    ];
+    var baseDizhu = this.data.game.dizhu;//类似于： var dizhu = ['A', 'A', '9'];
+    var baseFamer = this.data.game.famer;
+    var listDizhu = [];
+    var listFamer = [];
+    // console.log(baseDizhu);
+    for (var i = 0, len = baseDizhu.length; i < len; i++) {
+      listDizhu[i] = new util.PuKe(baseDizhu[i]);
+    }
+    // console.log(listDizhu);
+    for (var i = 0, len = baseFamer.length; i < len; i++) {
+      listFamer[i] = new util.PuKe(baseFamer[i]);
+    }
     listDizhu = this.resetListSelected(listDizhu);
     listFamer = this.resetListSelected(listFamer);
     this.setData({

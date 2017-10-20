@@ -1,0 +1,24 @@
+<!--pages/home/home.wxml-->
+
+
+<view>
+  <swiper indicator-dots="{{indicatorDots}}" class='swiper' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{paijuList}}" wx:key='c'>
+      <swiper-item style='text-align:center;'>
+        <view class='border_dizhu'>
+          <view class='border' style='visibility:{{visible_dizhu_play}}'>
+            <button class='button' type="primary" data-item='{{item}}' bindtap='doPractice'>练习</button>
+            <button class='button' type="primary" data-item='{{item}}' bindtap='doPlay' disabled="disabled">挑战</button>
+          </view>
+        </view>
+        <image src="{{item.image}}" class="slide-image" style='width:100%;height:100%;' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='border_dizhu2'>
+    <button class='buttonRandom' type="primary" bindtap='playRandom'>随机练习</button>
+    <view class='border_describe'>
+      <text class='describe'>说明：这是一个残局斗地主小游戏，类似于象棋残局。斗地主的规则多种多样，注意每局右上角的游戏说明，特别是出三张牌的时候，有些局不三个不让带，有些可以三带一，一般不让三带二</text>
+    </view>
+  </view>
+</view>

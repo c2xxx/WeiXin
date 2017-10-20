@@ -1,0 +1,52 @@
+/* pages/home/home.wxss */
+
+.button {
+  width: 140rpx;
+  align-self: center;
+  font-size: 15px;
+}
+
+.buttonRandom {
+  width: 250rpx;
+  align-self: center;
+  font-size: 15px;
+}
+
+.swiper {
+  width: 750rpx;
+  height: 820rpx;
+}
+
+.border_dizhu {
+  position: absolute;
+  top: 650rpx;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+}
+
+.border_dizhu2 { 
+  margin-top: 30rpx;
+  width: 100%;
+}
+
+.border {
+  width: 50%;
+  display: inline-flex;
+}
+
+.border_describe {
+  padding: 35rpx;
+  text-align: left;
+  margin-top: 30rpx;
+  background-color: lightblue;
+  font-size: 12px;
+  color: rebeccapurple;
+}
+.describe {
+  padding-left: 50rpx;
+  text-align: left;
+  top: 30rpx;
+  font-size: 12px;
+  color: rebeccapurple;
+}

@@ -1,0 +1,75 @@
+/*
+所有牌局
+*/
+var PaiJu = function (id, dizhu, famer, firstPlayer, ruleType, image) {
+  this.id = id;//每局唯一标识
+  this.dizhu = dizhu;//地主牌
+  this.famer = famer;//农民牌
+  this.firstPlayer = firstPlayer;//谁先出
+  this.ruleType = ruleType;
+  if (ruleType == 'A') {
+    this.ruleText = '斗地主双方明牌，规则是可以炸，可以三个不带，可以三带一，但不能三带二，可以四带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？';
+  } else if (ruleType == 'B') {
+    this.ruleText = '斗地主双方明牌，规则是可以炸，三个不带，不能三带一，不能三带二，可以四带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？';
+  }
+  if (!('' + image).startsWith('http')) {
+    image = 'http://oxwr9u8nc.bkt.clouddn.com/' + image;
+  }
+  this.image = image;//图片 
+}
+
+var game01 = function () {
+  var id = 'game01';
+  var dizhu = ['9', '9', '9', 'J', 'J', '小王', '大王'];
+  var famer = ['3', '3', '3', '3', '4', '5', '6', '7', '10', '10', 'A', 'A', 'A', 'A'];
+  var firstPlayer = 'famer';//谁先出
+  var imgName = 'game_05.jpg';
+  var ruleType = 'A';
+  return new PaiJu(id, dizhu, famer, firstPlayer, ruleType, imgName);
+}
+var game02 = function () {
+  var id = 'game02';
+  var dizhu = ['A', 'A', '9'];
+  var famer = ['2', '3', '5', '5', '4', '7', '7', '10', '10', 'Q', 'Q'];
+  var firstPlayer = 'famer';//谁先出
+  var imgName = 'game_02.jpg';
+  var ruleType = 'A';
+  return new PaiJu(id, dizhu, famer, firstPlayer, ruleType, imgName);
+}
+
+/*
+随机获取一个游戏
+*/
+var randomGame = function () {
+  var all = allGame();
+  var randomIndex = Math.floor(Math.random() * all.length);
+  return all[randomIndex];
+}
+/*
+根据ID获取一个游戏
+*/
+var loadGameById = function (id) {
+  var all = allGame();
+  for (var i = 0, len = all.length; i < len; i++) {
+    var game = all[i];
+    if (game.id == id) {
+      return game;
+    }
+  }
+  return null;
+}
+/*
+全部游戏
+*/
+var allGame = function () {
+  var all = [game01(), game02()];
+  return all;
+}
+
+module.exports = {
+  game01: game01,
+  game02: game02,
+  allGame: allGame,
+  loadGameById: loadGameById,
+  randomGame: randomGame
+}

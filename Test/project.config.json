@@ -9,7 +9,7 @@
 	"compileType": "weapp",
 	"libVersion": "1.5.4",
 	"appid": "wxa9d57bbf91b1306f",
-	"projectname": "%E6%B8%85%E6%99%A8%E5%AE%B8",
+	"projectname": "清晨宸",
 	"condition": {
 		"weapp": {
 			"current": -1,

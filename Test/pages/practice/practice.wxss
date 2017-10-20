@@ -1,4 +1,3 @@
- 
 .txt_dizhu {
   position: absolute;
   left: 20rpx;
@@ -28,6 +27,7 @@
 .puke_dizhu {
   margin-top: 105rpx;
 }
+
 .puke_dizhu_played {
   margin-top: 400rpx;
 }
@@ -35,6 +35,7 @@
 .puke_famer {
   margin-top: 850rpx;
 }
+
 .puke_famer_played {
   margin-top: 550rpx;
 }
@@ -66,4 +67,10 @@
   align-self: center;
   font-size: 15px;
   top: 500rpx;
+}
+
+.view_icon {
+  position: absolute;
+  width: 100%;
+  text-align: right;
 }

@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/practice/practice",
     "pages/canju/practice",
     "pages/help/help",
     "pages/kuke/kuke",

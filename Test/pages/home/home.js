@@ -1,34 +1,55 @@
-// pages/help.js
+// pages/home/home.js
+
 
 var app = getApp();
+var paiju = require('../../utils/paiju.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    describe:'斗地主双方明牌，规则是可以炸，可以三个不带，可以三带一，但不能三带二，可以四带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？',
-    helpImg: app.getImgUrl('game_05.jpg')
+    paijuList: paiju.allGame(),
+    indicatorDots: true,//显示小点
+    autoplay: true,//自动播放
+    interval: 4000,
+    duration: 500
   },
-
+  //练习
+  doPractice: function (e) {
+    var item = e.currentTarget.dataset.item;
+    this.goto(item,true);
+  },
+  //挑战
+  doPlay: function (e) {
+    var item = e.currentTarget.dataset.item;
+    this.goto(item, false);
+  },
+  //随机练习
+  playRandom: function (e) {
+    var item = paiju.randomGame();
+    this.goto(item, true);
+  },
+  //跳转
+  goto: function (item, isPritace) {
+    console.log('练习？' + isPritace + ",牌局：");
+    console.log(item);
+    wx.navigateTo({
+      url: '../practice/practice?id='+item.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数 
-    var helpImg = options.imgUrl;
-    console.log('helpImg=' + helpImg);
-    if (helpImg != null) {
-      this.setData({
-        helpImg: helpImg
-      })
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**
