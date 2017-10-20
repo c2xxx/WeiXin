@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/help/help",
     "pages/practice/practice",
     "pages/canju/practice",
-    "pages/help/help",
     "pages/kuke/kuke",
     "pages/index/index",
     "pages/puke/puke",

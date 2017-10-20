@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    describe:'斗地主双方明牌，规则是可以炸，可以三个不带，可以三带一，但不能三带二，可以四带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？',
+    describe: '斗地主双方明牌，规则是可以炸，可以三个不带，可以三带一，但不能三带二，可以四带二，也可以出顺子，农民先出牌，请问农民怎么才能赢？',
     helpImg: app.getImgUrl('game_05.jpg')
   },
 
@@ -15,12 +15,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //传了两个参数：image，ruleText 
     // 页面初始化 options为页面跳转所带来的参数 
-    var helpImg = options.imgUrl;
-    console.log('helpImg=' + helpImg);
-    if (helpImg != null) {
+    var image = options.image;
+    var ruleText = options.ruleText;
+    // console.log('image=' + image + '  ruleText=' + ruleText);
+    image = image ? image : this.data.helpImg;
+    ruleText = ruleText ? ruleText : this.data.describe;
+    if (image) {
       this.setData({
-        helpImg: helpImg
+        helpImg: image,
+        describe: ruleText
       })
     }
   },

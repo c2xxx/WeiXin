@@ -1,7 +1,7 @@
 // pages/canju/practice.js
 
 var isDebug = false;
-var util = require('../../utils/doudizhu.js');
+var util = require('../../utils/doudizhuA.js');
 var app = getApp();//获取应用实例
 var PlayModel = function (player, pukuList) {
   this.player = player;//famer或dizhu

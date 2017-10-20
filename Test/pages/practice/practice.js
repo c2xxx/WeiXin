@@ -1,6 +1,8 @@
 // pages/practce/practice.js
 
-var util = require('../../utils/doudizhu.js');
+var ruleA = require('../../utils/doudizhuA.js');//可以三带一
+var ruleB = require('../../utils/doudizhuB.js');//不可以三带一
+var util = ruleA;//默认可以三带一
 var paiju = require('../../utils/paiju.js');
 var app = getApp();//获取应用实例
 var PlayModel = function (player, pukuList) {
@@ -91,10 +93,11 @@ Page({
       game = paiju.randomGame();
     }
     if (game == null) {
+      var msg = '糟糕，游戏加载失败！';
       this.setData({
-        notice: '糟糕，游戏加载失败！'
+        notice: msg
       });
-      console.log('糟糕，游戏加载失败！');
+      console.log(msg);
     } else {
       this.setData({
         game: game
@@ -157,11 +160,14 @@ Page({
     }
   },
   gotoHelp(e) {
-    var img = app.getImgUrl('game_05.jpg');
-    if (this.data.game.image) {
-      img = this.data.game.image;
+    var game = this.data.game;
+    var image = app.getImgUrl('game_05.jpg');
+    var ruleText;
+    if (game.image) {
+      image = game.image;
+      ruleText = game.ruleText;
     }
-    var url = "../help/help?imgUrl=" + img;
+    var url = "../help/help?image=" + image + "&ruleText=" + ruleText;
     wx.navigateTo({
       url: url,
     })
@@ -194,8 +200,17 @@ Page({
     return listSelected;
   },
   doReSet: function () {
-    var baseDizhu = this.data.game.dizhu;//类似于： var dizhu = ['A', 'A', '9'];
-    var baseFamer = this.data.game.famer;
+    var game = this.data.game;
+    var baseDizhu = game.dizhu;//类似于： var dizhu = ['A', 'A', '9'];
+    var baseFamer = game.famer;
+    var firstPlayer = game.firstPlayer;
+    var ruleType = game.ruleType;
+
+    if (ruleType == 'B') {
+      util = ruleB;
+    }
+
+    var lastPlayer = firstPlayer == 'dizhu' ? 'famer' : 'dizhu';//上一个出牌的人 
     var listDizhu = [];
     var listFamer = [];
     // console.log(baseDizhu);
@@ -210,7 +225,7 @@ Page({
     listFamer = this.resetListSelected(listFamer);
     this.setData({
       hasFinish: false,
-      lastPlay: new PlayModel('dizhu', null),
+      lastPlay: new PlayModel(lastPlayer, null),
       dizhu: listDizhu,
       famer: listFamer
     });

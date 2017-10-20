@@ -3,7 +3,7 @@
 2、比较两组牌的大小
 本规则：可以三个不带，可以三带一，但不能三带二，可以四带二，也可以出顺子
 */
-
+var can3And1=true;//是否可以三带一
 /*
 出牌的所有牌型：
 没有连炸，三带一个或不带
@@ -138,7 +138,7 @@ function getPlayType(list) {
   }
   if (!ok) {
     playType.type = -1;
-    playType.msg = '不符合规则';
+    playType.msg = '牌型不符合规则';
   }
   return playType;
 }
@@ -273,8 +273,13 @@ function isFlyAnd1(list, playType) {
     var length2 = list.length;
     if (length / 4 == length - length2) {//没有被筛选掉的牌数量校验
       match = isFlyAnd0(list, playType);
-      playType.type = 6;
-      playType.msg = playType.length == 1 ? '三带一' : '飞机三带一';
+      if (can3And1) {
+        playType.type = 6;
+        playType.msg = playType.length == 1 ? '三带一' : '飞机三带一';
+      } else {
+        playType.type = -1;
+        playType.msg = '这局不可以三带一呢！';
+      }
     }
   }
   return match;
@@ -373,9 +378,9 @@ function log(msg) {
 // 比较两组牌型的大小，判断是否可以出
 function compare(playType, lastPlayType) {
 
-  console.log('比较以下两组');
-  console.log(playType);
-  console.log(lastPlayType);
+  // console.log('比较以下两组');
+  // console.log(playType);
+  // console.log(lastPlayType);
   // 0过牌，没有出牌
   // -1非法的类型，出牌不符合规则
   // 1炸弹：王炸 / 4张一样的= 2或4

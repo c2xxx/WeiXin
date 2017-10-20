@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paijuList: paiju.allGame(),
+    paijuList: paiju.allGameRandomOrder(),
     indicatorDots: true,//显示小点
     autoplay: true,//自动播放
     interval: 4000,
